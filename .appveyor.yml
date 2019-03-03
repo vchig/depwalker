@@ -13,8 +13,7 @@ build_script:
   - cmake --build _builds --config "%CONFIG%"
 
 artifacts:
-    - path: bin/depwalker.exe
-    - path: bin/depwalker.conf
+    - path: bin/
 
 deploy:
     provider: GitHub
@@ -22,7 +21,7 @@ deploy:
     auth_token:
         secure: xrpz/h0MgyGQnKb+KFm3Nqx5y0Uu3OIFr3tszZ7OKj676lx8mofty+jVWH53gUgh
 
-    artifact: /depwalker\..*/
+    artifact: /bin/depwalker\..*/
     force_update: true
     on:
         branch: master
