@@ -11,7 +11,7 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/depwalker.conf ${CMAKE_CURRENT_BINAR
 
 add_executable( ${PROJECT_NAME} ${wolker_sources} )
 target_link_libraries( ${PROJECT_NAME} ${Boost_LIBRARIES} )
-if( WIN32 )
+if( WIN32 AND NOT MSVC )
     target_link_options( ${PROJECT_NAME} PUBLIC -static -static-libstdc++ -static-libgcc )
 endif()
 set_target_properties( ${PROJECT_NAME} PROPERTIES
