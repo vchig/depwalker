@@ -9,19 +9,19 @@ environment:
       CONFIG: Release
 
 build_script:
-  - cmake "-G%GENERATOR%" -H. -B_builds
-  - cmake --build _builds --config "%CONFIG%"
+  - cmake "-G%GENERATOR%" -H. -Bbuild
+  - cmake --build build --config "%CONFIG%"
 
 artifacts:
-    - path: bin/
+    - path: build/bin
+      name: binary
+      type: zip
 
 deploy:
     provider: GitHub
     description: '$(APPVEYOR_REPO_TAG_NAME)'
     auth_token:
         secure: xrpz/h0MgyGQnKb+KFm3Nqx5y0Uu3OIFr3tszZ7OKj676lx8mofty+jVWH53gUgh
-
-    artifact: /bin/depwalker\..*/
     force_update: true
     on:
         branch: master
