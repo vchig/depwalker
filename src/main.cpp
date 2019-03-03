@@ -59,7 +59,7 @@ try
         std::string path;
 #ifdef __linux__
         while( std::getline(ss, path, ':') )
-#elif __MINGW32__
+#elif _WIN32
         while( std::getline(ss, path, ';') )
 #endif
         {
