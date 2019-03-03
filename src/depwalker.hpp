@@ -54,7 +54,7 @@ private:
     //! \brief Определяет операрот < (меньше) сравнения строк без учёта регистра
     struct LessString
     {
-        bool operator()(const  std::string& lhs, const std::string& rhs)
+        bool operator()(const  std::string& lhs, const std::string& rhs) const
         {
             return std::lexicographical_compare(lhs.begin(), lhs.end(),
                                                 rhs.begin(), rhs.end(),
