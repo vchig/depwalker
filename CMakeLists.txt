@@ -7,7 +7,7 @@ include_directories( ${Boost_INCLUDE_DIRS} )
 
 file( GLOB wolker_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.[ch]pp )
 
-configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/depwalker.conf ${CMAKE_CURRENT_BINARY_DIR}/depwalker.conf COPYONLY )
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/depwalker.conf ${CMAKE_CURRENT_BINARY_DIR}/bin/depwalker.conf COPYONLY )
 
 add_executable( ${PROJECT_NAME} ${wolker_sources} )
 target_link_libraries( ${PROJECT_NAME} ${Boost_LIBRARIES} )
@@ -16,4 +16,5 @@ if( WIN32 AND NOT MSVC )
 endif()
 set_target_properties( ${PROJECT_NAME} PROPERTIES
     CXX_STANDARD 11
-    CXX_STANDARD_REQUIRED YES )
+    CXX_STANDARD_REQUIRED YES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin" )

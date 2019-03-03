@@ -13,8 +13,8 @@ build_script:
   - cmake --build _builds --config "%CONFIG%"
 
 artifacts:
-    - path: Release/depwalker.exe
-    - path: depwalker.conf
+    - path: bin/depwalker.exe
+    - path: bin/depwalker.conf
 
 deploy:
     provider: GitHub
@@ -26,5 +26,6 @@ deploy:
     force_update: true
     on:
         branch: master
-        APPVEYOR_REPO_TAG: true
+        appveyor_repo_tag: true
+
 
