@@ -37,7 +37,7 @@ try
 
     if( vm.count("version") )
     {
-        std::cout << "Version:" << std::endl;
+        std::cout << "Version: " << APP_VERSION << std::endl;
         return 0;
     }
 
