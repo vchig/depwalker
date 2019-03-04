@@ -43,9 +43,11 @@ void PEFormat::load(const std::string &fname)
         //! Need move back in file.
         int diff_size = sizeof(ImageOptionalHeader64) - sizeof(ImageOptionalHeader32);
         pe_file.seekg( -diff_size, std::ios_base::cur );
+        type_ = PE_TYPE_I386;
         break;
     }
     case IMAGE_FILE_MACHINE_AMD64:
+        type_ = PE_TYPE_AMD64;
         break;
     default:
         throw std::runtime_error("Unknown architecture of PE file: '" + fname + "' ");
