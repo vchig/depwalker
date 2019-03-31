@@ -16,6 +16,7 @@ try
         ("help,h", "print help message")
         ("version,v", "version")
         ("recursive,r","find dependencies recursive")
+        ("verbose", "verbose output")
         ("copy,c", "copy dependency to binary folder")
         ("without-path", "find libraries without path")
         ("config", value<std::string>(), "configuration file")
@@ -46,6 +47,9 @@ try
 
     if( vm.count("copy") )
         dw.setCopy(true);
+
+    if( vm.count("verbose") )
+        dw.setVerbose(true);
 
     if( !vm.count("input-files") )
     {
@@ -86,7 +90,7 @@ try
 }
 catch( const std::exception& e )
 {
-    std::cerr << "Failed with exception: " << e.what() << std::endl;
+    std::cerr << "Failed with exception:\n\t" << e.what() << std::endl;
     return 1;
 }
 catch( ... )

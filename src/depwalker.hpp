@@ -26,6 +26,10 @@ public:
     void setCopy(bool en)
     { copy_ = en; }
 
+    //! \brief Устанавливает флаг подробного вывода
+    void setVerbose(bool en)
+    { verbose_ = en; }
+
     //!
     //! \brief Добавляет существующую директорию к путям поиска
     //! \param path Путь к директории
@@ -50,6 +54,7 @@ protected:
 private:
     bool recursive_;
     bool copy_;
+    bool verbose_;
 
     //! \brief Определяет операрот < (меньше) сравнения строк без учёта регистра
     struct LessString

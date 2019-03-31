@@ -14,6 +14,7 @@ namespace fs = boost::filesystem;
 DepWalker::DepWalker()
     : recursive_(false)
     , copy_(false)
+    , verbose_(false)
 {
 }
 
