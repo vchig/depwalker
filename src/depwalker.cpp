@@ -68,18 +68,18 @@ void DepWalker::walk(const std::string &fname)
         fs::path lib_name = fs::path(to).parent_path();
         lib_name += fs::path::preferred_separator;
         lib_name += fs::path(from).filename();
-        std::cout << "\tCopy library "
-                  << std::setfill('.') << std::setw(20) << fs::path(from).filename()
+        std::cout << "    Copy library "
+                  << std::setfill('.') << std::setw(40) << fs::path(from).filename().string()
                   << std::setfill('.') << std::setw(20);
         if( !exists(lib_name) )
         {
             copy_file(from, lib_name, fs::copy_option::fail_if_exists, ec);
             if( ec ) std::cout << ec.message() << std::endl;
-            else std::cout << "copied." << std::endl;
+            else std::cout << "copied" << std::endl;
         }
         else
         {
-            std::cout << "exist." << std::endl;
+            std::cout << "exist" << std::endl;
         }
     };
 
@@ -88,7 +88,7 @@ void DepWalker::walk(const std::string &fname)
         auto lib_path = findLibrary(d);
         std::cout << "Dependency: " << std::setfill('.') << std::setw(45) << d
                   << std::setfill('.') << std::setw(20) << (lib_path.empty() ? "not found" : "found") << std::endl;
-        if( copy_ )
+        if( copy_ && !lib_path.empty() )
             copy_lib(lib_path, full_path.string() );
     }
 }
