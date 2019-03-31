@@ -34,6 +34,12 @@ void DepWalker::walk(const std::string &fname)
         PEFormat fmt;
         fmt.load(fname);
         auto libs = fmt.importDlls();
+        if( verbose_ )
+        {
+            std::cout << "Find dependencies for " << fname << std::endl;
+            for( const auto& l : libs )
+                std::cout << "\tDependency: " << l << (except_libs_.find(l) != except_libs_.end() ? " (except)" : "") << std::endl;
+        }
         libs.remove_if( [this](const std::string& lib)
                         { return except_libs_.find(lib) != except_libs_.end(); }
                       );
@@ -63,12 +69,15 @@ void DepWalker::walk(const std::string &fname)
     };
 
     //! \brief Копирует библиотеку (попросту файл) в директорию с обрабатываемым файлом
-    auto copy_lib = [](const std::string& from, const std::string& to)
+    auto copy_lib = [this](const std::string& from, const std::string& to)
     {
         boost::system::error_code ec;
         fs::path lib_name = fs::path(to).parent_path();
         lib_name += fs::path::preferred_separator;
         lib_name += fs::path(from).filename();
+        if( verbose_ )
+            std::cout <<   "Copy from " << from
+                      << "\n       to " << lib_name.string() << std::endl;
         std::cout << "    Copy library "
                   << std::setfill('.') << std::setw(40) << fs::path(from).filename().string()
                   << "."
