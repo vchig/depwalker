@@ -71,7 +71,8 @@ void DepWalker::walk(const std::string &fname)
         lib_name += fs::path(from).filename();
         std::cout << "    Copy library "
                   << std::setfill('.') << std::setw(40) << fs::path(from).filename().string()
-                  << std::setfill('.') << std::setw(20);
+                  << "."
+                  << std::setfill('.') << std::setw(19);
         if( !exists(lib_name) )
         {
             copy_file(from, lib_name, fs::copy_option::fail_if_exists, ec);
