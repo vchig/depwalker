@@ -102,6 +102,8 @@ void DepWalker::appendSearchPath(const std::string &path)
 void DepWalker::setConfigurationFile(const std::string &fconfig)
 {
     using namespace boost::property_tree;
+    if( !fs::exists(fconfig) )
+        return;
     ptree conf;
     read_json( fconfig, conf );
     for( const auto& v : conf.get_child("system_libs") )
