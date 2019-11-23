@@ -2,16 +2,14 @@ version: '{build}'
 
 image: Visual Studio 2017
 
-branches:
-  only:
-    - master
-
 environment:
   BOOST_ROOT: C:/Libraries/boost_1_67_0
   matrix:
     - GENERATOR: "Visual Studio 15 Win64"
+      ARCH: x64
       CONFIG: Release
     - GENERATOR: "Visual Studio 15"
+      ARCH: x86
       CONFIG: Release
 
 build_script:
@@ -20,7 +18,7 @@ build_script:
 
 artifacts:
     - path: build/bin
-      name: binary
+      name: "%APPVEYOR_PROJECT_NAME%_%ARCH%"
       type: zip
 
 deploy:
