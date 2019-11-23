@@ -5,7 +5,7 @@ image: Visual Studio 2017
 environment:
   BOOST_ROOT: C:/Libraries/boost_1_67_0
   matrix:
-    - GENERATOR: "Visual Studio 15 Win64"
+    - GENERATOR: "Visual Studio 15"
       CONFIG: Release
 
 build_script:
