@@ -2,9 +2,15 @@ version: '{build}'
 
 image: Visual Studio 2017
 
+branches:
+  only:
+    - master
+
 environment:
   BOOST_ROOT: C:/Libraries/boost_1_67_0
   matrix:
+    - GENERATOR: "Visual Studio 15 Win64"
+      CONFIG: Release
     - GENERATOR: "Visual Studio 15"
       CONFIG: Release
 
